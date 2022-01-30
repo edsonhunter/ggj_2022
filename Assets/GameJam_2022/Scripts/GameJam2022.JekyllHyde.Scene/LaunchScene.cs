@@ -13,6 +13,9 @@ namespace GameJam2022.JekyllHyde.Scene
         private IGameManager GameManager { get; set; }
         private ISceneManager SceneManager { get; set; }
 
+        [field: Header("Debug")]
+        public float Speed = 1;
+
         private void Awake()
         {
             GameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
@@ -26,8 +29,8 @@ namespace GameJam2022.JekyllHyde.Scene
             var fadeLaunch = DOTween.Sequence();
             foreach (var splashArt in SplashArts)
             {
-                fadeLaunch.Append(splashArt.DOFade(1, 1f));
-                fadeLaunch.Append(splashArt.DOFade(0, 1f));
+                fadeLaunch.Append(splashArt.DOFade(1, 1f * Speed));
+                fadeLaunch.Append(splashArt.DOFade(0, 1f * Speed));
             }
 
             fadeLaunch.AppendCallback(() => { SceneManager.LoadScene("Menu"); });

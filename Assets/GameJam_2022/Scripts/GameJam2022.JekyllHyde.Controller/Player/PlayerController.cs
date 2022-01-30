@@ -1,3 +1,6 @@
+using System;
+using GameJam2022.JekyllHyde.Controller.State;
+using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface;
 using UnityEngine;
 
@@ -32,8 +35,10 @@ namespace GameJam2022.JekyllHyde.Controller.Player
 
         public void Hide(bool isHide)
         {
-            Player.ChangeHide(isHide);
-            PlayerSprite.Hide(Player);
+            if (Player.Hide(isHide))
+            {
+                PlayerSprite.Hide(Player);
+            }
         }
 
         public void Interact()
@@ -53,6 +58,12 @@ namespace GameJam2022.JekyllHyde.Controller.Player
         {
             if (InteractiveObject == collision.GetComponent<InteractiveController>()) InteractiveObject = null;
             if (collision.tag == "Hideable") Player.CanHide = false;
+        }
+
+        public void ShowTutorial(bool show)
+        {
+            Player.ShowTutorial(show);
+            PlayerSprite.ToggleTutorial(Player.Tutorial);
         }
     }
 }

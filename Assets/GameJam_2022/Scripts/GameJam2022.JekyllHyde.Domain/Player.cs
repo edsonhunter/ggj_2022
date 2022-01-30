@@ -6,10 +6,11 @@ namespace GameJam2022.JekyllHyde.Domain
 {
     public class Player : IPlayer
     {
-        public bool[] Items { get; protected set; }
+        public bool[] Items { get; private set; }
         public bool IsHidden { get; private set; }
         public bool CanHide { get; set; }
-        public PlayerOrientation Orientation { get; set; }
+        public bool Tutorial { get; set; }
+        public PlayerOrientation Orientation { get; private set; }
         private float CurrentDirection { get; set; }
 
         public Player(PlayerOrientation orientation)
@@ -42,7 +43,7 @@ namespace GameJam2022.JekyllHyde.Domain
             return false;
         }
 
-        public bool ChangeHide(bool hide)
+        public bool Hide(bool hide)
         {
             Debug.Log($"Player Hide: current {IsHidden} | new {hide} - can hide: {CanHide}");
             if (hide == IsHidden) return false;
@@ -67,6 +68,16 @@ namespace GameJam2022.JekyllHyde.Domain
                 Debug.LogException(e);
                 return false;
             }
+        }
+
+        public void ShowTutorial(bool show)
+        {
+            if (Tutorial == show)
+            {
+                throw new InvalidOperationException("Impossível inicializar tutorial já inicializado!");
+            }
+
+            Tutorial = show;
         }
     }
 }

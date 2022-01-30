@@ -290,6 +290,7 @@ MonoBehaviour:
   - {fileID: 1872884157}
   - {fileID: 926260682}
   - {fileID: 1657258045}
+  Speed: 0
 --- !u!1 &926260681
 GameObject:
   m_ObjectHideFlags: 0

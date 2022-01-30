@@ -7,6 +7,7 @@ namespace GameJam2022.JekyllHyde.Controller
     public class KeyboardController : MonoBehaviour
     {
         private bool Enabled { get; set; }
+        public bool Tutorial { get; private set; }
         
         public event Action OnMove
         {
@@ -29,12 +30,23 @@ namespace GameJam2022.JekyllHyde.Controller
             add => _onInteract += value;
             remove => _onInteract -= value;
         }
+        
+        private Action _onTutorialEnd { get; set; }
+
+        public event Action OnTutorialEnd
+        {
+            add => _onTutorialEnd += value;
+            remove => _onTutorialEnd -= value;
+        }
 
         private Action _onInteract { get; set; }
-
+        
         private void Update()
         {
-            if(Enabled)
+            if(CheckTutorial())
+                return;
+            
+            if(!Enabled)
                 return;
 
             if(Input.GetAxis("Horizontal") != 0f)
@@ -49,5 +61,29 @@ namespace GameJam2022.JekyllHyde.Controller
                 _onHide?.Invoke(false);
         }
 
+        public void ToggleKeyboard(bool enabled)
+        {
+            Enabled = enabled;
+        }
+
+        private bool CheckTutorial()
+        {
+            if (!Tutorial)
+                return false;
+            
+            if (Input.anyKey)
+            {
+                Tutorial = false;
+                _onTutorialEnd.Invoke();
+            }
+
+            return Tutorial;
+
+        }
+
+        public void StartTutorial()
+        {
+            Tutorial = true;
+        }
     }
 }

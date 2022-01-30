@@ -8,6 +8,7 @@ namespace GameJam2022.JekyllHyde.Controller.Player
     {
         [field: SerializeField] private SpriteRenderer PlayerSprite { get; set; }
         [field: SerializeField] private Animator PlayerAnimator { get; set; }
+        [field: SerializeField] private GameObject TutorialHolder { get; set; }
 
         public void Rotate(IPlayer player)
         {
@@ -30,6 +31,11 @@ namespace GameJam2022.JekyllHyde.Controller.Player
 
             PlayerAnimator.speed = 0;
             if (!PlayerAnimator.GetBool("Escondido")) PlayerAnimator.Rebind();
+        }
+
+        public void ToggleTutorial(bool show)
+        {
+            TutorialHolder.gameObject.SetActive(show);
         }
     }
 }
