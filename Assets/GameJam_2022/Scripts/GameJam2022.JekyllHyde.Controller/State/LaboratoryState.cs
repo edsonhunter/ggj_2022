@@ -5,17 +5,17 @@ namespace GameJam2022.JekyllHyde.Controller.State
     public class LaboratoryState : IState
     {
         private IStateMachineManager Manager { get; set; }
-        private KeyboardController KeyboardController { get; set; }
+        public IStateMachineContext Context { get; }
         
-        public LaboratoryState(KeyboardController keyboardController)
+        public LaboratoryState(IStateMachineContext context)
         {
-            KeyboardController = keyboardController;
+            Context = context;
         }
 
         public void Initialize(IStateMachineManager stateMachineManager)
         {
             Manager = stateMachineManager;
-            KeyboardController.ToggleKeyboard(true);
+            Context.KeyboardController.ToggleKeyboard(true);
         }
     }
 }

@@ -6,17 +6,20 @@ namespace GameJam2022.JekyllHyde.Controller
 {
     public class InteractiveController : MonoBehaviour
     {
-        public IInteractable Interactable;
+        private IInteractable Interactable { get; set; }
+        private Action OnInteract { get; set; }
 
-        public void Init(IInteractable interactable)
+        public void Init(IInteractable interactable, Action onInteract)
         {
             Interactable = interactable;
+            OnInteract = onInteract ?? throw new InvalidOperationException("Impossivel acao do objeto ser inexistente");
         }
 
         public void Interact(IPlayer player)
         {
             if (Interactable.Interact(player))
             {
+                OnInteract();
                 if (Interactable is IGettable) Destroy(gameObject);
             }
         }

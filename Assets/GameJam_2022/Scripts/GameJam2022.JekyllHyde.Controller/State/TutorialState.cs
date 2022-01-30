@@ -6,36 +6,34 @@ namespace GameJam2022.JekyllHyde.Controller.State
     public class TutorialState : IState
     {
         private IStateMachineManager StateMachineManager { get; set; }
-        private KeyboardController KeyboardController { get; set; }
-        private PlayerController PlayerController { get; set; }
-
-        public TutorialState(KeyboardController keyboardController, PlayerController playerController)
+        public IStateMachineContext Context { get; private set; }
+        
+        public TutorialState(IStateMachineContext context)
         {
-            KeyboardController = keyboardController;
-            PlayerController = playerController;
+            Context = context;
         }
         
         public void Initialize(IStateMachineManager stateMachineManager)
         {
             StateMachineManager = stateMachineManager;
             
-            KeyboardController.ToggleKeyboard(false);
-            KeyboardController.OnTutorialEnd += StopTutorial;
+            Context.KeyboardController.ToggleKeyboard(false);
+            Context.KeyboardController.OnTutorialEnd += StopTutorial;
             
             StartTutorial();
         }
 
         private void StartTutorial()
         {
-            KeyboardController.StartTutorial();
-            PlayerController.ShowTutorial(true);
+            Context.KeyboardController.StartTutorial();
+            Context.PlayerController.ShowTutorial(true);
         }
 
         private void StopTutorial()
         {
-            PlayerController.ShowTutorial(false);
-            StateMachineManager.SwapState(new LaboratoryState(KeyboardController));
-            KeyboardController.OnTutorialEnd -= StopTutorial;
+            Context.PlayerController.ShowTutorial(false);
+            StateMachineManager.SwapState(new LaboratoryState(Context));
+            Context.KeyboardController.OnTutorialEnd -= StopTutorial;
         }
     }
 }

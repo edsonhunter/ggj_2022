@@ -6,6 +6,7 @@ namespace GameJam2022.JekyllHyde.Domain
 {
     public abstract class BaseRoom : IRoom
     {
+        public RoomType RoomType { get; protected set; }
         public IList<IGettable> ItemsToGet { get; private set; }
         public bool HasEnemy { get; private set; }
 

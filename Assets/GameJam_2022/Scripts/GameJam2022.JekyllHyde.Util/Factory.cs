@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using GameJam2022.JekyllHyde.Domain;
 using GameJam2022.JekyllHyde.Domain.Interface;
 
@@ -13,6 +14,11 @@ namespace GameJam2022.JekyllHyde.Util
         public static IInteractable CreateGettableItem(int itemId)
         {
             return new GettableItem(itemId);
+        }
+
+        public static ILaboratoryRoom CreateLaboratory()
+        {
+            return new LaboratoryRoom(new List<IGettable> {  }, true);
         }
     }
 }

@@ -4,15 +4,15 @@
     "references": [
         "GUID:41a824c6c4d2cc44d9be9cd91e1cc262",
         "GUID:a2f198581d6952f47bad1482895f006f",
-        "GUID:cf0e27515ae640a489325d0d50b135a4"
+        "GUID:cf0e27515ae640a489325d0d50b135a4",
+        "GUID:0520f27a8b446ca4eb6ef95998af8eef"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "DOTween.dll",
-        "DOTweenEditor.dll"
+        "DOTween.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [],
