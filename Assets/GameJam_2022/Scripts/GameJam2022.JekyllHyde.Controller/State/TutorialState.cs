@@ -21,6 +21,7 @@ namespace GameJam2022.JekyllHyde.Controller.State
             
             KeyboardController.ToggleKeyboard(false);
             KeyboardController.OnTutorialEnd += StopTutorial;
+            
             StartTutorial();
         }
 
@@ -34,6 +35,7 @@ namespace GameJam2022.JekyllHyde.Controller.State
         {
             PlayerController.ShowTutorial(false);
             StateMachineManager.SwapState(new LaboratoryState(KeyboardController));
+            KeyboardController.OnTutorialEnd -= StopTutorial;
         }
     }
 }
