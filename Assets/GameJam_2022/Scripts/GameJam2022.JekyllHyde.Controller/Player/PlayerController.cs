@@ -1,4 +1,5 @@
 using System;
+using GameJam2022.JekyllHyde.Controller.Room;
 using GameJam2022.JekyllHyde.Controller.State;
 using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface;
@@ -18,7 +19,7 @@ namespace GameJam2022.JekyllHyde.Controller.Player
         {
             Player = player;
         }
-
+        
         public void Move()
         {
             if (Player.IsHidden) return;
@@ -64,6 +65,11 @@ namespace GameJam2022.JekyllHyde.Controller.Player
         {
             Player.ShowTutorial(show);
             PlayerSprite.ToggleTutorial(Player.Tutorial);
+        }
+
+        public void SetNewRoom(RoomController currentRoom, RoomType entryPoint)
+        {
+            transform.position = currentRoom.GetStartPositionForEntryPoint(entryPoint);
         }
     }
 }

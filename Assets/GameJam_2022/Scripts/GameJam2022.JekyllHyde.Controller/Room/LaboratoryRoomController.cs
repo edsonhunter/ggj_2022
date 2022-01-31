@@ -13,14 +13,19 @@ namespace GameJam2022.JekyllHyde.Controller.Room
         [field: SerializeField] private InteractiveController Stairs { get; set; }
         [field: SerializeField] private InteractiveController Table { get; set; }
 
-        private IRoom Room => LaboratoryRoom;
-        public RoomType RoomType => RoomType.Laboratorio;
+        public override RoomType RoomType => RoomType.Laboratorio;
         private ILaboratoryRoom LaboratoryRoom { get; set; }
 
         public override void Init(IRoom room, IStateMachineManager stateMachine)
         {
             LaboratoryRoom = room as ILaboratoryRoom;
-            base.Init(Room, stateMachine);
+            base.Init(LaboratoryRoom, stateMachine);
+            InitializeRoomElements();
+        }
+
+        public override Vector3 GetStartPositionForEntryPoint(RoomType entryPoint)
+        {
+            return Door.transform.position;
         }
 
         private void InitializeRoomElements()

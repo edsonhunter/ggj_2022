@@ -18,6 +18,7 @@ namespace GameJam2022.JekyllHyde.Controller.State
             Manager = stateMachineManager;
             Context.KeyboardController.ToggleKeyboard(true);
             Context.RoomManager.LoadRoom(RoomType.Corredor);
+            Context.PlayerController.SetNewRoom(Context.RoomManager.CurrentRoom, RoomType.Laboratorio);
         }
     }
 }

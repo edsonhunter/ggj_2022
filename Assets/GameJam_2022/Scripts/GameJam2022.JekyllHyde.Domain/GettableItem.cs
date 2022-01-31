@@ -16,4 +16,12 @@ namespace GameJam2022.JekyllHyde.Domain
             return player.PickupItem(ItemId);
         }
     }
+    
+    public class InteractableItem : IInteractable
+    {
+        public bool Interact(IPlayer player)
+        {
+            return true;
+        }
+    }
 }

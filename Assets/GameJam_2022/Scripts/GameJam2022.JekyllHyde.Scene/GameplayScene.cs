@@ -10,7 +10,6 @@ using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Manager;
 using GameJam2022.JekyllHyde.Manager.Interface;
 using GameJam2022.JekyllHyde.Scene.Interface;
-using GameJam2022.JekyllHyde.Service.Interface;
 using GameJam2022.JekyllHyde.Util;
 using UnityEngine;
 
@@ -42,9 +41,10 @@ namespace GameJam2022.JekyllHyde.Scene
         {
             PlayerController.Init(GameManager.GameplayService.Player);
             RoomManager = new RoomManager(RoomControllers, StateMachine, GameManager.GameplayService.CreateRooms());
-            EnemyController.Init(Factory.CreateEnemy(Domain.Interface.PlayerOrientation.Left), GameManager.GameplayService.Player, PlayerController.transform, 30);
-            MainCamera.transform.SetParent(PlayerController.transform);
+            EnemyController.Init(Factory.CreateEnemy(Domain.Interface.PlayerOrientation.Left), GameManager.GameplayService.Player, PlayerController.transform);
             
+            MainCamera.transform.SetParent(PlayerController.transform);
+
             KeyboardController.OnMove += PlayerController.Move;
             KeyboardController.OnHide += PlayerController.Hide;
             KeyboardController.OnInteract += PlayerController.Interact;

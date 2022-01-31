@@ -19,11 +19,9 @@ namespace GameJam2022.JekyllHyde.Domain
             CurrentDirection = 1;
             Items = new bool[5];
         }
-        
+
         public bool ChangeDirection(float direction)
         {
-            Debug.Log($"current: {CurrentDirection} | new: {direction} - current orientation: {Orientation}");
-            
             if (CurrentDirection < 0 && direction > 0)
             {
                 CurrentDirection = direction;

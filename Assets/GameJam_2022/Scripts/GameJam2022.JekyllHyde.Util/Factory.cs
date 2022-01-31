@@ -16,14 +16,14 @@ namespace GameJam2022.JekyllHyde.Util
             return new Enemy(enemyOrientation);
         }
 
-        public static IInteractable CreateGettableItem(int itemId)
+        public static IGettable CreateGettableItem(int itemId)
         {
             return new GettableItem(itemId);
         }
 
         public static ILaboratoryRoom CreateLaboratory()
         {
-            return new LaboratoryRoom(new List<IGettable> {  }, true);
+            return new LaboratoryRoom(CreateGettableItem(0), new InteractableItem(), new InteractableItem(), new InteractableItem());
         }
     }
 }

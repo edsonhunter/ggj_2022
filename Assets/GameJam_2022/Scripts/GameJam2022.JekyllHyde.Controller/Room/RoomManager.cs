@@ -11,7 +11,7 @@ namespace GameJam2022.JekyllHyde.Controller.Room
     {
         private IList<RoomController> RoomControllers { get; set; }
         
-        private RoomController CurrentRoom { get; set; }
+        public RoomController CurrentRoom { get; private set; }
         private IStateMachineManager StateMachineManager { get; set; } 
 
         public RoomManager(IList<RoomController> roomControllers, IStateMachineManager stateMachineManager, IList<IRoom> rooms)
@@ -49,6 +49,7 @@ namespace GameJam2022.JekyllHyde.Controller.Room
             }
 
             CurrentRoom = GetRoom(room);
+            CurrentRoom.gameObject.SetActive(true);
         }
     }
 }

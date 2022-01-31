@@ -10,9 +10,14 @@ namespace GameJam2022.JekyllHyde.Domain
         public IInteractable Stairs { get; }
         public IInteractable Table { get; }
 
-        public LaboratoryRoom(IList<IGettable> itemsToGet, bool hasEnemy) : base(itemsToGet, hasEnemy)
+        public override RoomType RoomType => RoomType.Laboratorio;
+
+        public LaboratoryRoom(IGettable redElement, IInteractable door, IInteractable stairs, IInteractable table)
         {
-            
+            RedElement = redElement;
+            Door = door;
+            Stairs = stairs;
+            Table = table;
         }
     }
 }
