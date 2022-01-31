@@ -5,7 +5,7 @@ namespace GameJam2022.JekyllHyde.Domain
     public class Enemy : IEnemy
     {
         public PlayerOrientation Orientation { get; private set; }
-        public int CurrentDirection { get; set; }
+        public float CurrentDirection { get; set; }
         public bool Chasing { get; private set; }
         private float ChaseDistance = 6f;
 
@@ -14,6 +14,27 @@ namespace GameJam2022.JekyllHyde.Domain
             Orientation = orientation;
             CurrentDirection = (orientation == PlayerOrientation.Right) ? 1 : -1;
             Chasing = false;
+        }
+        
+        public bool ChangeDirection(float direction)
+        {
+            if (CurrentDirection < 0 && direction > 0)
+            {
+                CurrentDirection = direction;
+                Orientation = PlayerOrientation.Right;
+                return true;
+            }
+
+            if (CurrentDirection > 0 && direction < 0)
+            {
+                CurrentDirection = direction;
+                Orientation = PlayerOrientation.Left;
+                return true;
+            }
+
+            CurrentDirection = direction;
+            
+            return false;
         }
 
         public bool ChaseUpdate(bool playerHidden,  float distance, float playerX, float enemyX)

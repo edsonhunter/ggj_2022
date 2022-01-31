@@ -24,28 +24,25 @@ namespace GameJam2022.JekyllHyde.Controller.Enemy
         }
 
         private Action<bool> _onChasingUpdate { get; set; }
-
-
-        private IEnemy Enemy;
-        private IPlayer Player;
-        private float RoomSize;
-        private Transform PlayerPos;
+        
+        private IEnemy Enemy { get; set; }
+        private IPlayer Player { get; set; }
+        private Transform PlayerPos { get; set; }
 
         private float KillDistance = 2f;
         private float Speed = 2f;
         private float RunSpeed = 6f;
         private float AlreadyMoved = 0f;
 
-        public void Init(IEnemy enemy, IPlayer player, Transform playerPos, float roomSize)
+        public void Init(IEnemy enemy, IPlayer player, Transform playerPos)
         {
             Enemy = enemy;
 
-            if (enemy.Orientation != PlayerOrientation.Right)
-                EnemySprite.Rotate(enemy);
+            if (Enemy.Orientation != PlayerOrientation.Right)
+                EnemySprite.Rotate(Enemy);
 
             PlayerPos = playerPos;
             Player = player;
-            RoomSize = roomSize;
         }
 
         // Calculos de distancia do player
@@ -91,12 +88,22 @@ namespace GameJam2022.JekyllHyde.Controller.Enemy
 
             Vector3 move = new Vector3(Enemy.CurrentDirection, 0);
             Vector3 totalMove = move * (currentSpeed * Time.deltaTime);
-
             transform.position += totalMove;
 
-            AlreadyMoved += (totalMove.x > 0) ? totalMove.x : -totalMove.x;
+            AlreadyMoved += totalMove.x;
 
-            if (AlreadyMoved > RoomSize) Destroy(gameObject);
+            Debug.Log($" Já andou: {AlreadyMoved} + amount to move { totalMove.x} + orientação: {Enemy.Orientation} {(int) Enemy.Orientation}");
+            
+            if (AlreadyMoved > 30)
+            {
+                Enemy.ChangeDirection(-1);
+                EnemySprite.Rotate(Enemy);
+            }
+            else if(AlreadyMoved < 0)
+            {
+                Enemy.ChangeDirection(1);
+                EnemySprite.Rotate(Enemy);
+            }
         }
     }
 }
