@@ -3,6 +3,7 @@ using GameJam2022.JekyllHyde.Controller.Room.Interface;
 using GameJam2022.JekyllHyde.Controller.State;
 using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface;
+using GameJam2022.JekyllHyde.Domain.Interface.Room;
 using UnityEngine;
 
 namespace GameJam2022.JekyllHyde.Controller.Room
@@ -14,23 +15,32 @@ namespace GameJam2022.JekyllHyde.Controller.Room
         [field: SerializeField] private InteractiveController Table { get; set; }
 
         public override RoomType RoomType => RoomType.Laboratorio;
-        private ILaboratoryRoom LaboratoryRoom { get; set; }
+        private ILaboratoryRoom LaboratoryRoom => Room as ILaboratoryRoom;
 
         public override void Init(IRoom room, IStateMachineManager stateMachine)
         {
-            LaboratoryRoom = room as ILaboratoryRoom;
-            base.Init(LaboratoryRoom, stateMachine);
+            Room = room;
+            StateMachine = stateMachine;
             InitializeRoomElements();
         }
 
         public override Vector3 GetStartPositionForEntryPoint(RoomType entryPoint)
         {
-            return Door.transform.position;
+            switch (entryPoint)
+            {
+                case RoomType.Corredor:
+                    return Stairs.transform.position;        
+            }
+            return Vector3.one;
         }
 
         private void InitializeRoomElements()
         {
-            Door.Init(LaboratoryRoom.Door, () =>
+            Table.Init(LaboratoryRoom.Table, () =>
+            {
+                Debug.Log("Player Hide");
+            });
+            Stairs.Init(LaboratoryRoom.Door, () =>
             {
                 StateMachine.SwapState(new CorridorState(StateMachine.CurrentState.Context));
             });

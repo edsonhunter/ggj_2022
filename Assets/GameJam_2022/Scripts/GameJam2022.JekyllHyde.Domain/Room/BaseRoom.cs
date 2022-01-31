@@ -3,7 +3,7 @@ using System.Linq;
 using GameJam2022.JekyllHyde.Domain.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface.Room;
 
-namespace GameJam2022.JekyllHyde.Domain
+namespace GameJam2022.JekyllHyde.Domain.Room
 {
     public abstract class BaseRoom : IRoom
     {

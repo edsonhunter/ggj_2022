@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameJam2022.JekyllHyde.Domain.Interface
+namespace GameJam2022.JekyllHyde.Domain.Interface.Room
 {
     public interface IRoom
     {

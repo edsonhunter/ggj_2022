@@ -3,6 +3,7 @@ using GameJam2022.JekyllHyde.Controller.Room;
 using GameJam2022.JekyllHyde.Controller.State;
 using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface;
+using GameJam2022.JekyllHyde.Domain.Interface.Room;
 using UnityEngine;
 
 namespace GameJam2022.JekyllHyde.Controller.Player

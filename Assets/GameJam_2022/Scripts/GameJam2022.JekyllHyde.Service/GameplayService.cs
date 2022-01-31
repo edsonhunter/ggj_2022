@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameJam2022.JekyllHyde.Domain.Interface;
+using GameJam2022.JekyllHyde.Domain.Interface.Room;
 using GameJam2022.JekyllHyde.Service.Interface;
 using GameJam2022.JekyllHyde.Util;
 
@@ -18,9 +19,14 @@ namespace GameJam2022.JekyllHyde.Service
         
         public IList<IRoom> CreateRooms()
         {
+            //Corredor
+            ICorridorRoom corridor = Factory.CreateCorridor();
+            Rooms.Add(corridor);
+            
             //Laboratorio
             var lab = Factory.CreateLaboratory();
             Rooms.Add(lab);
+
             return Rooms;
         }
     }

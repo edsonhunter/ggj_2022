@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GameJam2022.JekyllHyde.Domain.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface.Room;
 
-namespace GameJam2022.JekyllHyde.Domain
+namespace GameJam2022.JekyllHyde.Domain.Room
 {
     public class LaboratoryRoom : BaseRoom, ILaboratoryRoom
     {

@@ -1,5 +1,6 @@
 using GameJam2022.JekyllHyde.Controller.State.Interface;
 using GameJam2022.JekyllHyde.Domain.Interface;
+using GameJam2022.JekyllHyde.Domain.Interface.Room;
 
 namespace GameJam2022.JekyllHyde.Controller.State
 {
@@ -18,7 +19,7 @@ namespace GameJam2022.JekyllHyde.Controller.State
             Manager = stateMachineManager;
             Context.KeyboardController.ToggleKeyboard(true);
             Context.RoomManager.LoadRoom(RoomType.Laboratorio);
-            Context.PlayerController.SetNewRoom(Context.RoomManager.CurrentRoom, RoomType.Laboratorio);
+            Context.PlayerController.SetNewRoom(Context.RoomManager.CurrentRoom, RoomType.Corredor);
         }
     }
 }

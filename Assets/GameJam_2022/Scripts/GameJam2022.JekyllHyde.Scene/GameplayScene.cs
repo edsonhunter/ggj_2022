@@ -35,6 +35,7 @@ namespace GameJam2022.JekyllHyde.Scene
         {
             GameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
             SceneManager = GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>();
+            StateMachine = new StateMachineManager();
         }
         
         private void Start()
@@ -69,7 +70,6 @@ namespace GameJam2022.JekyllHyde.Scene
         
         private void StartStateMachine()
         {
-            StateMachine = new StateMachineManager();
             var gameContext = new StateMachineContext(KeyboardController, PlayerController, RoomManager, TransitionController);
             StateMachine.PushState(new TutorialState(gameContext));
         }

@@ -1,20 +1,16 @@
 using GameJam2022.JekyllHyde.Controller.State.Interface;
-using GameJam2022.JekyllHyde.Domain.Interface;
+using GameJam2022.JekyllHyde.Domain.Interface.Room;
 using UnityEngine;
 
 namespace GameJam2022.JekyllHyde.Controller.Room
 {
     public abstract class RoomController : MonoBehaviour
     {
-        public IStateMachineManager StateMachine { get; private set; }
-        public IRoom Room { get; protected set; }
+        protected IStateMachineManager StateMachine { get; set; }
+        protected IRoom Room { get; set; }
         public virtual RoomType RoomType { get; protected set; }
 
-        public virtual void Init(IRoom room, IStateMachineManager stateMachine)
-        {
-            Room = room;
-            StateMachine = stateMachine;
-        }
+        public abstract void Init(IRoom room, IStateMachineManager stateMachine);
 
         public abstract Vector3 GetStartPositionForEntryPoint(RoomType entryPoint);
     }
